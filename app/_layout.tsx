@@ -1,24 +1,42 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import "@/styles/global.css";
+import { LogBox } from "react-native";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { PortalHost } from "@rn-primitives/portal";
+import { Stack } from "expo-router";
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { ThemeProvider } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "nativewind";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import { AuthProvider } from "@/features/auth/providers/AuthProvider";
+import { NAV_THEME } from "@/styles/theme";
+
+LogBox.ignoreLogs(["SafeAreaView has been deprecated"]);
+
+export { ErrorBoundary } from "expo-router";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <>
+      <StatusBar
+        key={`root-status-bar-${colorScheme ? "light" : "dark"}`}
+        style={colorScheme ? "light" : "dark"}
+      />
+      <SafeAreaProvider>
+        <ThemeProvider value={NAV_THEME[colorScheme ?? "light"]}>
+          <AuthProvider>
+            <Stack>
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+              <Stack.Screen name="(public)" options={{ headerShown: false }} />
+            </Stack>
+            <PortalHost />
+          </AuthProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </>
   );
 }
