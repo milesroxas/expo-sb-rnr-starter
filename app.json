@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "expo-sb-rnr-starter",
-    "slug": "expo-test",
+    "slug": "sb-starter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
