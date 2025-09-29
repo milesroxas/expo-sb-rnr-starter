@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "expo-sb-rnr-starter",
-    "slug": "expo-sb-rnr-starter",
+    "slug": "sb-starter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -60,6 +60,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/2a51cc85-38f7-4316-ad31-7fabd7a31b1d"
-    }
+    },
+    "owner": "milesroxas"
   }
 }
