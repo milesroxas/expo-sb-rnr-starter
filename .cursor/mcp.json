@@ -6,6 +6,9 @@
       "headers": {
         "nonce": "7a6ba1e0-1f15-4d68-90df-3a71371f2694"
       }
+    },
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp/roxas-ventures/sb-starter"
     }
   }
 }
